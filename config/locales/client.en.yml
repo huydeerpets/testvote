@@ -1,0 +1,11 @@
+en:
+  js:
+    feature_voting:
+      allow_topic_voting: "Allow users to vote on topics in this category"
+      vote_title: "Vote"
+      unvote_title: "Unvote"
+      voting_closed_title: "Closed"
+      voting_limit: "Limit"
+      vote:
+        one: "vote"
+        multiple: "votes"
