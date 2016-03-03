@@ -128,9 +128,9 @@ after_initialize do
     end
 
     def vote_count
-     # if self.custom_fields["vote_count"]
-     #   return self.custom_fields["vote_count"]
-     # else
+      if self.custom_fields["votes"]
+        return self.custom_fields["vote_count"]
+      else
         if self.category.custom_fields["enable_topic_voting"]
           Set.new(
             TopicCustomField
@@ -139,7 +139,7 @@ after_initialize do
           )
         end
         return 0
-     # end
+      end
     end
 
   end
