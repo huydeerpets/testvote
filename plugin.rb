@@ -129,16 +129,16 @@ after_initialize do
 
     def vote_count
      # if self.custom_fields["vote_count"]
-        return self.custom_fields["vote_count"]
+     #   return self.custom_fields["vote_count"]
      # else
-     #   if self.category.custom_fields["enable_topic_voting"]
-     #     Set.new(
-     #       TopicCustomField
-     #         .where(name: "vote_count", value: 0)
-     #         .pluck(:topic_id)
-     #     )
-     #   end
-     #   return 0
+        if self.category.custom_fields["enable_topic_voting"]
+          Set.new(
+            TopicCustomField
+              .where(name: "vote_count", value: 0)
+              .pluck(:topic_id)
+          )
+        end
+        return 0
      # end
     end
 
