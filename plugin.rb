@@ -1,8 +1,8 @@
-# name: test-vote
-# about: jsut test
+# name: discourse-feature-voting
+# about: Adds the ability to vote on features in a specified category.
 # version: 0.1
 # author: Joe Buhlig joebuhlig.com
-
+# url: https://www.github.com/joebuhlig/discourse-feature-voting
 
 register_asset "stylesheets/feature-voting.scss"
 register_asset "javascripts/feature-voting.js"
@@ -128,17 +128,17 @@ after_initialize do
     end
 
     def vote_count
-      #if self.custom_fields["vote_count"]
+      if self.custom_fields["vote_count"]
         return self.custom_fields["vote_count"]
-      #else
-       # if self.category.custom_fields["enable_topic_voting"]
-       #   Set.new(
-       #     TopicCustomField
-       #       .where(name: "vote_count", value: 0)
-       #       .pluck(:topic_id)
-       #   )
-       # end
-       # return 0
+      else
+        if self.category.custom_fields["enable_topic_voting"]
+          Set.new(
+            TopicCustomField
+              .where(name: "vote_count", value: 0)
+              .pluck(:topic_id)
+          )
+        end
+        return 0
       end
     end
 
